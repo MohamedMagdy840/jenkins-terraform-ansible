@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
-                sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
+                sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -vvv main.yaml'
             }
         }
     }
