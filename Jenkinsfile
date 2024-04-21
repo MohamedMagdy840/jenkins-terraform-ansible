@@ -23,7 +23,7 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 // Run ansible playbook from the root directory
-                sh 'ansible-playbook your_playbook.yml'
+                sh 'ansible-playbook main.yml'
             }
         }
     }
