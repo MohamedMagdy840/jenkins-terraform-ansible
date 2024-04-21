@@ -24,7 +24,6 @@ pipeline {
             steps {
                 sh 'cd $WORKSPACE && ls -al' // Check files in workspace
                 sh 'cd $WORKSPACE && cat main.yaml' // View contents of main.yaml
-                sh 'cd $WORKSPACE && ping -c 5 <target_host>' // Ping target host for connectivity
             }
         }
         
