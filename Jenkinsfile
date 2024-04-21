@@ -24,7 +24,7 @@ pipeline {
             steps {
                 // Sleep for 5 minutes (300 seconds)
                 sleep time: 60, unit: 'SECONDS'
-                echo 'Woke up after 5 minutes!'
+                echo 'Woke up after 1 minute!'
             }
         }
 
