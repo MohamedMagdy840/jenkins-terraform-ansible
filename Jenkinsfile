@@ -1,47 +1,29 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your Git repository to a directory named 'my-repo'
-                checkout scm
+                // Check out the code from the Git repository, using 'main' branch
+                git branch: 'main', url: 'https://github.com/MohamedMagdy840/jenkins-terraform-ansible'
             }
         }
-
-        stage('Terraform Init') {
+        
+        stage('Terraform Init & Apply') {
             steps {
-                script {
-                    // Navigate to Terraform directory
-                    dir('my-repo') {
-                        // Initialize Terraform
-                        sh 'terraform init'
-                    }
-                }
+                // Run terraform init and apply from the main directory
+                sh '''
+                    cd $WORKSPACE
+                    terraform init
+                    terraform apply -auto-approve
+                '''
             }
         }
-
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    // Navigate to Terraform directory
-                    dir('my-repo') {
-                        // Apply Terraform changes
-                        sh 'terraform apply -auto-approve'
-                    }
-                }
-            }
-        }
-
+        
         stage('Run Ansible Playbook') {
             steps {
-                script {
-                    // Navigate to Ansible directory
-                    dir('my-repo') {
-                        // Run Ansible playbook
-                        sh 'ansible-playbook main.yaml'
-                    }
-                }
+                // Run ansible playbook from the root directory
+                sh 'ansible-playbook your_playbook.yml'
             }
         }
     }
