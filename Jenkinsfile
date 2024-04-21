@@ -23,7 +23,8 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 // Run ansible playbook from the root directory
-                sh 'ansible-playbook -k main.yaml'
+                sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml
+'
             }
         }
     }
