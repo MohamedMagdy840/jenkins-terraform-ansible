@@ -20,10 +20,18 @@ pipeline {
             }
         }
         
+        stage('Sleep for 5 minutes') {
+            steps {
+                // Sleep for 5 minutes (300 seconds)
+                sleep time: 300, unit: 'SECONDS'
+                echo 'Woke up after 5 minutes!'
+            }
+        }
+
 
         stage('Run Ansible Playbook') {
             steps {
-                sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory -vvv main.yaml'
+                sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
             }
         }
     }
