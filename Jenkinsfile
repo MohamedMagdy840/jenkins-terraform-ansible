@@ -23,7 +23,7 @@ pipeline {
         stage('Sleep for 5 minutes') {
             steps {
                 // Sleep for 5 minutes (300 seconds)
-                sleep time: 100, unit: 'SECONDS'
+                sleep time: 60, unit: 'SECONDS'
                 echo 'Woke up after 5 minutes!'
             }
         }
