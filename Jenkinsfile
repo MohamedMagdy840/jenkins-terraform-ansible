@@ -8,20 +8,21 @@ pipeline {
             }
         }
         
-        stage('Terraform Init & Apply') {
+        stage('Terraform Init') {
             steps {
-                dir('/var/jenkins_home/workspace/terraform-ansible') {
-                    sh 'terraform init'
-                    sh 'terraform apply -auto-approve'
-                }
+                sh 'cd $WORKSPACE && terraform init'
+            }
+        }
+        
+        stage('Terraform Apply') {
+            steps {
+                sh 'cd $WORKSPACE && terraform apply -auto-approve'
             }
         }
         
         stage('Run Ansible Playbook') {
             steps {
-                dir('/var/jenkins_home/workspace/terraform-ansible') {
-                    sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
-                }
+                sh 'cd $WORKSPACE && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
             }
         }
     }
