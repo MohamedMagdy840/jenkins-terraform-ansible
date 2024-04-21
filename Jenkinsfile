@@ -20,13 +20,7 @@ pipeline {
             }
         }
         
-        stage('Debug') {
-            steps {
-                sh 'cd $WORKSPACE && ls -al' // Check files in workspace
-                sh 'cd $WORKSPACE && cat main.yaml' // View contents of main.yaml
-            }
-        }
-        
+
         stage('Run Ansible Playbook') {
             steps {
                 sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
