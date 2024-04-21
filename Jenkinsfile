@@ -10,13 +10,13 @@ pipeline {
         
         stage('Terraform Init') {
             steps {
-                sh 'cd $WORKSPACE && terraform init'
+                sh 'terraform init'
             }
         }
         
         stage('Terraform Apply') {
             steps {
-                sh 'cd $WORKSPACE && terraform apply -auto-approve'
+                sh 'terraform apply -auto-approve'
             }
         }
         
@@ -29,7 +29,7 @@ pipeline {
         
         stage('Run Ansible Playbook') {
             steps {
-                sh 'cd $WORKSPACE && ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
+                sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
             }
         }
     }
