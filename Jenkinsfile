@@ -10,7 +10,7 @@ pipeline {
         
         stage('Terraform Init & Apply') {
             steps {
-                dir('$WORKSPACE') {
+                dir('/var/jenkins_home/workspace/terraform-ansible') {
                     sh 'terraform init'
                     sh 'terraform apply -auto-approve'
                 }
@@ -19,7 +19,7 @@ pipeline {
         
         stage('Run Ansible Playbook') {
             steps {
-                dir('$WORKSPACE') {
+                dir('/var/jenkins_home/workspace/terraform-ansible') {
                     sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml'
                 }
             }
