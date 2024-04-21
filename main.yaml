@@ -1,0 +1,18 @@
+- name: Install NGINX on Ubuntu
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start NGINX
+      service:
+        name: nginx
+        state: started
+        enabled: yes
