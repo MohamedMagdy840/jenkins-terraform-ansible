@@ -36,3 +36,7 @@ pipeline {
         }
     }
 }
+
+
+//note
+// we can run each stage in different agent if we want each stage using different version of same package like python
