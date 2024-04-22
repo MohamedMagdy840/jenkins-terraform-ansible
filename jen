@@ -1,19 +1,1 @@
-pipeline {
-    agent any
-    
-    stages {
 
-        
-        stage('Run Ansible Playbook') {
-            steps {
-                // Run ansible playbook from the root directory
-                sh '''
-                    cd /var/jenkins_home/workspace/terraform-ansible
-                    ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook main.yaml
-                    
-                '''
-                
-            }
-        }
-    }
-}
